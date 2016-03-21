@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+# hookit is installed as a bundled app, so we need bundler to load it for us
+$:.unshift  '/opt/gonano/hookit/vendor/bundle'
+require 'bundler/setup'
+
+# load hookit/setup to bootstrap hookit and import the dsl
+require 'hookit/setup'
+
+# Stop pulse
+service 'pulse' do
+  action :disable
+end
+
+# Remove pulse runit definition
+directory '/etc/service/pulse' do
+  action :delete
+end
+
+# Stop influxdb
+service 'influxdb' do
+  action :disable
+end
+
+# Remove influxdb runit definition
+directory '/etc/service/influxdb' do
+  action :delete
+end
+
+# Stop narc
+service 'narc' do
+  action :disable
+end
+
+# Remove narc runit definition
+directory '/etc/service/narc' do
+  action :delete
+end
