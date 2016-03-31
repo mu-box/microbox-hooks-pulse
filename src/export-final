@@ -8,27 +8,25 @@ require 'bundler/setup'
 require 'hookit/setup'
 
 # This hook will export the data to the new members while the service is offline
-payload[:members].each do |member|
 
-  # export influxdb
-  execute "send diff data to new member" do
-    command <<-EOF
-      rsync \
-        --delete \
-        -a \
-        /var/db/influxdb/. \
-        #{member[:local_ip]}:/var/db/influxdb/
-    EOF
-  end
+# export influxdb
+execute "send diff data to new member" do
+  command <<-EOF
+    rsync \
+      --delete \
+      -a \
+      /var/db/influxdb/. \
+      #{payload[:member][:local_ip]}:/var/db/influxdb/
+  EOF
+end
 
-  # export pulse
-  execute "send diff data to new member" do
-    command <<-EOF
-      rsync \
-        --delete \
-        -a \
-        /var/db/pulse/. \
-        #{member[:local_ip]}:/var/db/pulse/
-    EOF
-  end
+# export pulse
+execute "send diff data to new member" do
+  command <<-EOF
+    rsync \
+      --delete \
+      -a \
+      /var/db/pulse/. \
+      #{payload[:member][:local_ip]}:/var/db/pulse/
+  EOF
 end
