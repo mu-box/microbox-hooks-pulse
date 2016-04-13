@@ -1,6 +1,13 @@
 # source docker helpers
 . util/docker.sh
 
+# source mist helpers
+. util/mist.sh
+
+@test "Start Mist Container" {
+  start_mist
+}
+
 @test "Start Old Container" {
   start_container "test-migrate-old" "192.168.0.2"
 }
@@ -74,4 +81,8 @@
 
 @test "Stop New Container" {
   stop_container "test-migrate-new"
+}
+
+@test "Stop Mist Container" {
+  stop_mist
 }
