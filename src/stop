@@ -10,29 +10,35 @@ require 'hookit/setup'
 # Stop pulse
 service 'pulse' do
   action :disable
+  not_if { !Dir.exist?('/etc/service/pulse') }
 end
 
 # Remove pulse runit definition
 directory '/etc/service/pulse' do
   action :delete
+  not_if { !Dir.exist?('/etc/service/pulse') }
 end
 
 # Stop influxdb
 service 'influxdb' do
   action :disable
+  not_if { !Dir.exist?('/etc/service/influxdb') }
 end
 
 # Remove influxdb runit definition
 directory '/etc/service/influxdb' do
   action :delete
+  not_if { !Dir.exist?('/etc/service/influxdb') }
 end
 
 # Stop narc
 service 'narc' do
   action :disable
+  not_if { !Dir.exist?('/etc/service/narc') }
 end
 
 # Remove narc runit definition
 directory '/etc/service/narc' do
   action :delete
+  not_if { !Dir.exist?('/etc/service/narc') }
 end
