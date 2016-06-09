@@ -21,7 +21,7 @@ end
 template '/etc/pulse/config.json' do
   source 'pulse/config.json.erb'
   mode 0644
-  variables ({ config: payload[:config], mist: payload[:mist_host] })
+  variables ({ config: payload[:config], mist: payload[:mist_host], mist_token: payload[:mist_token] })
   owner 'gonano'
   group 'gonano'
 end

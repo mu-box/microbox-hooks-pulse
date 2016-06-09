@@ -1,10 +1,14 @@
 {
-  "server_listen_address": "0.0.0.0:5530",
-  "http_listen_address": "0.0.0.0:5531",
-  "influx_address": "http://127.0.0.1:8086",
-  "mist_address": "<%= mist %>:1445",
-  "log_level": "INFO",
+  "server-listen-address": "0.0.0.0:5530",
+  "http-listen-address": "0.0.0.0:5531",
+  "influx-address": "http://127.0.0.1:8086",
+  "kapacitor-address": "",
+  "mist-address": "<%= mist %>:1445",
+  "mist-token": "<%= mist_token %>:1445",
+  "log-level": "INFO",
   "token": "<%= config[:token] %>",
-  "poll_interval": 60,
-  "aggregate_interval": 15
+  "poll-interval": 60,
+  "insecure": true,
+  "server": true,
+  "aggregate-interval": 15
 }
