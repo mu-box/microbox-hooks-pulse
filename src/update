@@ -14,7 +14,7 @@ pulse_latest=$(cat /var/nanobox/pulse.md5)
 if [ ! "$pulse_installed" = "$pulse_latest" ]; then
   echo "Pulse is out of date, updating to latest"
   # stop the running Nanoagent
-  sv pulse stop
+  sv stop pulse
   # download the latest version
   curl \
     -f \
@@ -24,7 +24,7 @@ if [ ! "$pulse_installed" = "$pulse_latest" ]; then
   # update permissions
   chmod 755 /usr/local/bin/pulse
   # start the new version
-  sv pulse start
+  sv start pulse
 else
   echo "Pulse is up to date."
 fi
