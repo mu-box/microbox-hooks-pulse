@@ -11,22 +11,18 @@ require 'hookit/setup'
 
 # export influxdb
 execute "send diff data to new member" do
-  command <<-EOF
-    rsync \
-      --delete \
-      -a \
-      /var/db/influxdb/. \
-      #{payload[:member][:local_ip]}:/var/db/influxdb/
-  EOF
+  command "rsync \
+    --delete \
+    -e 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' \
+    -a /var/db/influxdb/. \
+    #{payload[:member][:local_ip]}:/var/db/influxdb/"
 end
 
 # export pulse
 execute "send diff data to new member" do
-  command <<-EOF
-    rsync \
-      --delete \
-      -a \
-      /var/db/pulse/. \
-      #{payload[:member][:local_ip]}:/var/db/pulse/
-  EOF
+  command "rsync \
+    --delete \
+    -e 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' \
+    -a /var/db/pulse/. \
+    #{payload[:member][:local_ip]}:/var/db/pulse/"
 end
