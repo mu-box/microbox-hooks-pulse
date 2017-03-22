@@ -11,7 +11,7 @@ require 'hookit/setup'
 # still online.
 
 # transfer influxdb
-execute "send bulk data to new member" do
+execute "send bulk influx data to new member" do
   command <<-EOF
     tar \
       -cf \
@@ -24,8 +24,22 @@ execute "send bulk data to new member" do
   EOF
 end
 
+# transfer kapacitor
+execute "send bulk kapacitor data to new member" do
+  command <<-EOF
+    tar \
+      -cf \
+      - \
+      /var/db/kapacitor \
+        | ssh \
+          -o StrictHostKeyChecking=no \
+          #{payload[:member][:local_ip]} \
+          tar -C / -xpf -
+  EOF
+end
+
 # transfer pulse
-execute "send bulk data to new member" do
+execute "send bulk pulse data to new member" do
   command <<-EOF
     tar \
       -cf \

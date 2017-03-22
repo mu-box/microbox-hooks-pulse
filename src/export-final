@@ -18,6 +18,15 @@ execute "send diff data to new member" do
     #{payload[:member][:local_ip]}:/var/db/influxdb/"
 end
 
+# export kapacitor
+execute "send diff data to new member" do
+  command "rsync \
+    --delete \
+    -e 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' \
+    -a /var/db/kapacitor/. \
+    #{payload[:member][:local_ip]}:/var/db/kapacitor/"
+end
+
 # export pulse
 execute "send diff data to new member" do
   command "rsync \

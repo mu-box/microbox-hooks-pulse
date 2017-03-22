@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+# create the log directory if it doesn't exist
+[ -d /var/log/gonano/kapacitord ] || mkdir -p /var/log/gonano/kapacitord
+
+# tell svlogd to drop the stdout into our custom location
+cd /var/log/gonano/kapacitord
+exec svlogd -v -ttt /var/log/gonano/kapacitord

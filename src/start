@@ -55,6 +55,29 @@ service 'influxdb' do
   action :enable
 end
 
+# create the runit definitions for kapacitord
+directory '/etc/service/kapacitord' do
+  recursive true
+end
+
+directory '/etc/service/kapacitord/log' do
+  recursive true
+end
+
+hook_file '/etc/service/kapacitord/log/run' do
+  source 'runit/kapacitord-log'
+  mode 0755
+end
+
+hook_file '/etc/service/kapacitord/run' do
+  source 'runit/kapacitord'
+  mode 0755
+end
+
+service 'kapacitord' do
+  action :enable
+end
+
 # create the runit definitions for pulse
 directory '/etc/service/pulse' do
   recursive true
@@ -77,3 +100,5 @@ end
 service 'pulse' do
   action :enable
 end
+
+# todo: ensure services are up and listening on correct ports

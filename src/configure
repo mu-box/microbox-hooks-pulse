@@ -32,6 +32,12 @@ hook_file '/etc/influxdb/influxdb.conf' do
   group 'gonano'
 end
 
+# generate config file for kapacitor
+hook_file '/etc/kapacitor/kapacitor.conf' do
+  owner 'gonano'
+  group 'gonano'
+end
+
 if payload[:logvac_host]
   # configure narc
   template '/opt/gonano/etc/narc.conf' do

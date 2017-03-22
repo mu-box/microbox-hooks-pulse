@@ -25,6 +25,12 @@ service 'influxdb' do
   not_if { !Dir.exist?('/etc/service/influxdb') }
 end
 
+# Remove kapacitord runit definition
+directory '/etc/service/kapacitord' do
+  action :delete
+  not_if { !Dir.exist?('/etc/service/kapacitord') }
+end
+
 # Remove influxdb runit definition
 directory '/etc/service/influxdb' do
   action :delete
