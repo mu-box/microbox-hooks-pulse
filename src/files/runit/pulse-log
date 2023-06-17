@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
 # create the log directory if it doesn't exist
-[ -d /var/log/gonano/pulse ] || mkdir -p /var/log/gonano/pulse
+[ -d /var/log/gomicro/pulse ] || mkdir -p /var/log/gomicro/pulse
 
 # tell svlogd to drop the stdout into our custom location
-cd /var/log/gonano/pulse
-exec svlogd -v -ttt /var/log/gonano/pulse
+cd /var/log/gomicro/pulse
+exec svlogd -v -ttt /var/log/gomicro/pulse
